@@ -133,7 +133,7 @@ static inline int sdi_pmbus_linear_data_to_int(uint8_t user_data_msb, uint8_t us
     Y = ( Y << 8 ) | user_data_lsb ;
     Y = ( Y & (1<<10) ) ? (-((~Y + 1) & 0x7FF)) : Y ;
 
-    return ( Y * (1<<N));
+    return N < 0 ? ( Y / (1<<-N)) : ( Y * (1<<N));
 }
 
 /*
