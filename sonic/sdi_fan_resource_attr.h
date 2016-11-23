@@ -67,6 +67,16 @@
 #define SDI_DEV_ATTR_FAN_CONTROL_TYPE     "fan_control_type"
 
 /**
+ * @def Attribute used for representing CPLD fan control
+ */
+#define SDI_DEV_CPLD_FAN_MULTIPLIER       "fan_speed_multiplier"
+#define SDI_DEV_CPLD_FAN_PWM_OFF          "fan_pwm_off"
+#define SDI_DEV_CPLD_FAN_PWM_FULL         "fan_pwm_full"
+#define SDI_DEV_CPLD_FAN_SPEED            "fan_speed_bus"
+#define SDI_DEV_CPLD_FAN_PWM              "fan_pwm_bus"
+#define SDI_DEV_CPLD_FAN_STATUS           "fan_status_bus"
+
+/**
  * @}
  */
 

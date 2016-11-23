@@ -37,6 +37,7 @@
 #include "sdi_eeprom.h"
 #include "sdi_onie_eeprom.h"
 #include "sdi_dell_eeprom.h"
+#include "sdi_extreme_eeprom.h"
 #include "sdi_i2c_bus_api.h"
 #include "std_assert.h"
 #include "sdi_bus_framework.h"
@@ -81,6 +82,11 @@ entity_info_t eeprom_delta_psu_callbacks = {
         sdi_delta_psu_eeprom_data_get,
 };
 
+entity_info_t eeprom_extreme_delta_psu_callbacks = {
+        NULL, /**< eeprom init is done in the device itself */
+        sdi_extreme_delta_psu_eeprom_data_get,
+};
+
 /* Export the Driver table */
 sdi_driver_t eeprom_entry = {
         sdi_eeprom_register,
@@ -119,6 +125,7 @@ static t_std_error sdi_eeprom_read(const struct sdi_device_entry *hdl, uint_t of
 
     switch (eeprom_data->entity_size)
     {
+        case 16384: /* 128K bits*/
         case 8192: /* 64K bits*/
             /** These devices need 64bit offset which is not possible with
              * native SMBus API.
@@ -287,6 +294,10 @@ static t_std_error sdi_eeprom_register(std_config_node_t node, void *bus_handle,
                             strlen(SDI_STR_DELL_LEGACY_FAN_EEPROM)) == 0 ){
             sdi_resource_add(SDI_RESOURCE_ENTITY_INFO, chip->alias,(void*)chip,
                             &eeprom_dell_legacy_fan_callbacks);
+    } else if (strncmp(attr_value, SDI_STR_EXTREME_DELTA_PSU_EEPROM,
+                            strlen(SDI_STR_EXTREME_DELTA_PSU_EEPROM)) == 0 ){
+            sdi_resource_add(SDI_RESOURCE_ENTITY_INFO, chip->alias,(void*)chip,
+                            &eeprom_extreme_delta_psu_callbacks);
     } else {
             /* Assert, when unsupported parser is received from config */
             STD_ASSERT(false);

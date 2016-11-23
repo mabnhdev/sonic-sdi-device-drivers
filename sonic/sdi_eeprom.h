@@ -47,6 +47,7 @@ typedef enum {
      SDI_DELL_LEGACY_PSU_EEPROM,      /**< DELL LEGACY PSU EEPROM */
      SDI_DELL_LEGACY_FAN_EEPROM,      /**< DELL LEGACY FAN EEPROM */
      SDI_DELTA_PSU_EEPROM,            /**< DELTA LEGACY PSU EEPROM */
+     SDI_EXTREME_DELTA_PSU_EEPROM,    /**< EXTREME DELTA PSU EEPROM */
 }sdi_entity_parser_t ;
 
 /**
