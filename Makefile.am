@@ -10,6 +10,7 @@ libsonic_sdi_device_drivers_la_SOURCES = src/sdi_eeprom.c src/sdi_onie_eeprom.c 
                                          src/sdi_seven_segment_pin_led.c src/sdi_pmbus_dev.c src/sdi_s6k_psu.c src/sdi_pseudo_bus.c \
                                          src/sdi_qsfp.c src/sdi_qsfp_eeprom.c src/sdi_sfp.c src/sdi_sfp_eeprom.c \
                                          src/sdi_cpld_fan_ctrl.c src/sdi_extreme_eeprom.c \
+                                         src/sdi_linux_lm75.c src/sys-interface-drivers/sdi_sysfs_helpers.c \
                                          src/sys-interface-drivers/sdi_i2cdev.c src/sys-interface-drivers/sdi_gpio.c \
                                          src/sys-interface-drivers/sdi_sysfs_gpio_helpers.c
 
