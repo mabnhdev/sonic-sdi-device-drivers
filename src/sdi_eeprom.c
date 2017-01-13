@@ -82,9 +82,14 @@ entity_info_t eeprom_delta_psu_callbacks = {
         sdi_delta_psu_eeprom_data_get,
 };
 
-entity_info_t eeprom_extreme_delta_psu_callbacks = {
+entity_info_t eeprom_extreme_exos_psu_callbacks = {
         NULL, /**< eeprom init is done in the device itself */
-        sdi_extreme_delta_psu_eeprom_data_get,
+        sdi_extreme_exos_psu_eeprom_data_get,
+};
+
+entity_info_t eeprom_extreme_exos_fan_callbacks = {
+        NULL, /**< eeprom init is done in the device itself */
+        sdi_extreme_exos_fan_eeprom_data_get,
 };
 
 /* Export the Driver table */
@@ -294,10 +299,14 @@ static t_std_error sdi_eeprom_register(std_config_node_t node, void *bus_handle,
                             strlen(SDI_STR_DELL_LEGACY_FAN_EEPROM)) == 0 ){
             sdi_resource_add(SDI_RESOURCE_ENTITY_INFO, chip->alias,(void*)chip,
                             &eeprom_dell_legacy_fan_callbacks);
-    } else if (strncmp(attr_value, SDI_STR_EXTREME_DELTA_PSU_EEPROM,
-                            strlen(SDI_STR_EXTREME_DELTA_PSU_EEPROM)) == 0 ){
+    } else if (strncmp(attr_value, SDI_STR_EXTREME_EXOS_PSU_EEPROM,
+                            strlen(SDI_STR_EXTREME_EXOS_PSU_EEPROM)) == 0 ){
             sdi_resource_add(SDI_RESOURCE_ENTITY_INFO, chip->alias,(void*)chip,
-                            &eeprom_extreme_delta_psu_callbacks);
+                            &eeprom_extreme_exos_psu_callbacks);
+    } else if (strncmp(attr_value, SDI_STR_EXTREME_EXOS_FAN_EEPROM,
+                            strlen(SDI_STR_EXTREME_EXOS_FAN_EEPROM)) == 0 ){
+            sdi_resource_add(SDI_RESOURCE_ENTITY_INFO, chip->alias,(void*)chip,
+                            &eeprom_extreme_exos_fan_callbacks);
     } else {
             /* Assert, when unsupported parser is received from config */
             STD_ASSERT(false);
